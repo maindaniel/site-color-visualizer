@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Site Color Visualizer</title>
+    <meta name="description" content="Open-source tool to help visualize how certain color themes will look on a webpage.">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <main class="wrapper">
+        <section id="start">
+            <div class="introduction">
+                <h1 class="header">Site Color Visualizer</h1>
+                <p>An open source tool to help create basic color themes for websites, and to also visualize how they could look on a template website.</p>
+
+                <h2 class="subheader">How to Use</h2>
+                <p>Add colors to your color pool below by clicking the + button near the section header</p>
+            </div>
+            <div class="sidenav">
+                <ul>
+                    <li>
+                        <button>Generate Example Layout</button>
+                    </li>
+                    <li>
+                        <button>Export Colors</button>
+                    </li>
+                    <li>
+                        <button>Test</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+
+        <section id="color-pool">
+            <h2 class="subheader">Color Pool <button>+</button></h2>
+            <div class="color-cards">
+                <div class="color-card">
+                    <div class="name">
+                        <label>Color Name</label>
+                        <input type="text"/>
+                    </div>
+                    <div class="color-hex">
+                        <label>Hex Code</label>
+                        <input type="text"/>
+                    </div>
+                    <div class="color-preview"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="visualizer">
+            <h2 class="subheader">Visualize <button>Reset</button></h2>
+        </section>
+    </main>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "site-color-visualizer",
+  "version": "1.0.0",
+  "description": "Open-source tool to help visualize how certain color themes will look on a webpage.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "lessc assets/css/styles.less assets/css/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylan-snyder/site-color-visualizer.git"
+  },
+  "author": "dylan-snyder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dylan-snyder/site-color-visualizer/issues"
+  },
+  "homepage": "https://github.com/dylan-snyder/site-color-visualizer#readme",
+  "dependencies": {
+    "less": "^4.1.1"
+  }
+}
