@@ -1,23 +1,43 @@
 {
   "name": "site-color-visualizer",
   "version": "1.0.0",
+  "private": true,
   "description": "Open-source tool to help visualize how certain color themes will look on a webpage.",
-  "main": "index.js",
+  "author": {
+    "name": "dylan-snyder"
+  },
   "scripts": {
-    "compile": "lessc assets/css/styles.less assets/css/styles.css",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "compile": "lessc src/assets/css/styles.less src/assets/css/styles.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dylan-snyder/site-color-visualizer.git"
+  "main": "main.js",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "vue": "^2.6.11"
   },
-  "author": "dylan-snyder",
-  "license": "MIT",
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^4.1.1",
+    "less-loader": "^4.1.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "_id": "site-color-visualizer@1.0.0",
   "bugs": {
     "url": "https://github.com/dylan-snyder/site-color-visualizer/issues"
   },
   "homepage": "https://github.com/dylan-snyder/site-color-visualizer#readme",
-  "dependencies": {
-    "less": "^4.1.1"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylan-snyder/site-color-visualizer.git"
   }
 }

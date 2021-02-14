@@ -1,0 +1,60 @@
+@font-face {
+  font-family: Raleway;
+  src: url("../fonts/Raleway-Regular.ttf");
+}
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  background-color: #dddddd;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+p,
+a,
+label {
+  font-family: "Roboto", monospace;
+}
+a {
+  color: #c0ffee;
+  text-decoration: none;
+  transition: all 0.1s;
+}
+a:hover {
+  color: #c0ffee;
+}
+button {
+  background-color: #eeeeee;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  min-width: 24px;
+  min-height: 24px;
+}
+button:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
