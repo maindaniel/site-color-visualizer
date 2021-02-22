@@ -41,8 +41,9 @@
           <ColorCard
             v-for="card in colorList"
             :key="card.id"
-            :card="card"
+            :initialCard="card"
             @remove="removeColorCard"
+            @duplicate="duplicateColorCard"
           />
         </div>
       </section>
@@ -77,16 +78,28 @@ export default {
     };
   },
   methods: {
+    /** Add brand new color card set to card defaults. */
     addColorCard() {
       this.colorList.push({
         id: ++nextColorId,
         label: "",
-        color: "",
+        hex: "",
       });
     },
+
+    /** Remove a color card based on unique id. */
     removeColorCard(id) {
       this.colorList = this.colorList.filter((card) => {
         return card.id !== id;
+      });
+    },
+
+    /** Duplicate a color card based on other card's id. */
+    duplicateColorCard(card) {
+      this.colorList.push({
+        id: ++nextColorId,
+        label: card.label,
+        hex: card.hex,
       });
     },
   },
@@ -118,7 +131,7 @@ export default {
 
     .introduction {
       h1 {
-        margin-top: 0.5rem;
+        margin-top: 0rem;
       }
     }
   }

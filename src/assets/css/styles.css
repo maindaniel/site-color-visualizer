@@ -26,7 +26,7 @@ h4,
 h5,
 h6 {
   font-family: "Raleway", sans-serif;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0;
 }
 h1 {
   font-size: 2rem;
@@ -38,6 +38,7 @@ p,
 a,
 label {
   font-family: "Roboto", monospace;
+  margin: 0;
 }
 a {
   color: #c0ffee;
@@ -57,4 +58,7 @@ button {
 button:hover {
   background-color: #cccccc;
   cursor: pointer;
+}
+ul {
+  margin: 0;
 }
