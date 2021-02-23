@@ -19,6 +19,9 @@ body {
   margin: 0;
   background-color: #dddddd;
 }
+hr {
+  margin: 2rem 0 1rem 0;
+}
 h1,
 h2,
 h3,
@@ -58,6 +61,9 @@ button {
 button:hover {
   background-color: #cccccc;
   cursor: pointer;
+}
+button img {
+  margin-top: 2px;
 }
 ul {
   margin: 0;

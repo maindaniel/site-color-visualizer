@@ -35,7 +35,9 @@
       <section id="color-pool">
         <div class="subheader">
           <h2>Color Pool</h2>
-          <button @click="addColorCard">+</button>
+          <button @click="addColorCard">
+            <img src="./assets/icons/plus.svg" alt="Add Color Card" />
+          </button>
         </div>
         <div class="color-cards">
           <ColorCard
@@ -121,7 +123,7 @@ export default {
     justify-content: flex-start;
 
     button {
-      margin-left: 0.5rem;
+      margin-left: 1rem;
     }
   }
 

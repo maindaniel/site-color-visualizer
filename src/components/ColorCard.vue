@@ -10,14 +10,19 @@
     </div>
     <div class="color-preview"></div>
     <div class="color-actions">
-      <button @click="$emit('duplicate', card)" class="card-action">D</button>
-      <button @click="$emit('remove', card.id)" class="card-action">X</button>
+      <button @click="$emit('duplicate', card)" class="card-action">
+        <img src="../assets/icons/copy.svg" alt="Duplicate Color Card" />
+      </button>
+      <button @click="$emit('remove', card.id)" class="card-action">
+        <img src="../assets/icons/trash.svg" alt="Remove Color Card" />
+      </button>
     </div>
   </div>
 </template>
 
 
 <script>
+
 export default {
   name: "ColorCard",
   props: {
