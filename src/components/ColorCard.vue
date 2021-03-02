@@ -8,7 +8,7 @@
       <label>Hex Code</label>
       <input type="text" v-model="card.hex" />
     </div>
-    <div class="color-preview"></div>
+    <div class="color-preview" :style="{ backgroundColor: card.hex }"></div>
     <div class="color-actions">
       <button @click="$emit('duplicate', card)" class="card-action">
         <img src="../assets/icons/copy.svg" alt="Duplicate Color Card" />
@@ -77,7 +77,6 @@ export default {
   .color-preview {
     grid-area: preview;
     border-radius: 5px;
-    background-color: deeppink;
   }
 
   .color-actions {
