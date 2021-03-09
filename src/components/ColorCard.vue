@@ -37,8 +37,6 @@ export default {
       card: this.initialCard,
     };
   },
-  methods: {
-  },
 };
 </script>
 

@@ -54,26 +54,12 @@
         <h2 class="subheader">Visualize <button>Reset</button></h2>
         <div class="grid-container">
           <div class="selectors">
-            <div class="selector">
-              <div
-                class="previewbox"
-                :style="{ backgroundColor: styles.navigation }"
-              ></div>
-              <label for="navigation">Navigation: </label>
-              <select
-                name="navigation"
-                id="navigation"
-                @change="colorUpdated('navigation', $event.target.value)"
-              >
-                <option
-                  v-for="color in colorList"
-                  :key="color.id"
-                  :value="color.id"
-                >
-                  {{ color.label }}
-                </option>
-              </select>
-            </div>
+            <Selector
+              selectName="navigation"
+              :previewColor="styles.navigation"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
           </div>
 
           <div class="display">
@@ -112,8 +98,7 @@
                   </figcaption>
                 </figure>
 
-                <button>Button 1</button> <button>Button 2</button>
-                <button>Button 3</button>
+                <button>Button 1</button> <button>Button 2</button> <button>Button 3</button>
               </article>
               <div class="sidebar1">
                 <h4>Sidebar 1</h4>
@@ -135,6 +120,7 @@
 
 <script>
 import ColorCard from "./components/ColorCard.vue";
+import Selector from "./components/Selector.vue";
 
 let nextColorId = 1;
 
@@ -142,6 +128,7 @@ export default {
   name: "App",
   components: {
     ColorCard,
+    Selector,
   },
   data() {
     return {
