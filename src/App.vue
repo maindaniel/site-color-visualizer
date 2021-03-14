@@ -55,6 +55,64 @@
         <div class="grid-container">
           <div class="selectors">
             <Selector
+              selectName="Page Background"
+              bindName="pageBackground"
+              :previewColor="styles.pageBackground"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+            <Selector
+              selectName="Content Background"
+              bindName="contentBackground"
+              :previewColor="styles.contentBackground"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+
+            <hr class="select-divider" />
+
+            <Selector
+              selectName="Nav"
+              bindName="nav"
+              :previewColor="styles.nav"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+            <Selector
+              selectName="Nav Item Text"
+              bindName="navItemText"
+              :previewColor="styles.navItemText"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+
+            <hr class="select-divider" />
+
+            <Selector
+              selectName="Main Content"
+              bindName="mainContent"
+              :previewColor="styles.mainContent"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+            <Selector
+              selectName="Sidebar 1"
+              bindName="sidebar1"
+              :previewColor="styles.sidebar1"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+            <Selector
+              selectName="Sidebar 2"
+              bindName="sidebar2"
+              :previewColor="styles.sidebar2"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+
+            <hr class="select-divider" />
+
+            <Selector
               selectName="Text"
               bindName="text"
               :previewColor="styles.text"
@@ -79,30 +137,6 @@
               selectName="Header Text"
               bindName="headerText"
               :previewColor="styles.headerText"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Footer Text"
-              bindName="footerText"
-              :previewColor="styles.footerText"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Nav"
-              bindName="nav"
-              :previewColor="styles.nav"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Nav Item Text"
-              bindName="navItemText"
-              :previewColor="styles.navItemText"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -134,44 +168,16 @@
             <hr class="select-divider" />
 
             <Selector
-              selectName="Page Background"
-              bindName="pageBackground"
-              :previewColor="styles.pageBackground"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Content Background"
-              bindName="contentBackground"
-              :previewColor="styles.contentBackground"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Main Content"
-              bindName="mainContent"
-              :previewColor="styles.mainContent"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Sidebar 1"
-              bindName="sidebar1"
-              :previewColor="styles.sidebar1"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
-              selectName="Sidebar 2"
-              bindName="sidebar2"
-              :previewColor="styles.sidebar2"
-              :colorList="colorList"
-              @change="colorUpdated"
-            />
-            <Selector
               selectName="Footer"
               bindName="footer"
               :previewColor="styles.footer"
+              :colorList="colorList"
+              @change="colorUpdated"
+            />
+            <Selector
+              selectName="Footer Text"
+              bindName="footerText"
+              :previewColor="styles.footerText"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -259,14 +265,11 @@
                 :style="{ backgroundColor: styles.sidebar1 }"
               >
                 <h4 :style="{ color: styles.headerText }">Sidebar 1</h4>
-                <p>
-                  Here is some more example text. Here is example text
-                  <span :style="{ color: styles.secondaryText }"
-                    >in the secondary color</span
-                  >. Also, here is
-                  <a href="#" :style="{ color: styles.linkText }"
-                    >another link</a
-                  >.
+                <p :style="{ color: styles.secondaryText }">
+                  Here is some more example text, this time entirely in the
+                  secondary text color. Also, here is
+                  <a href="#" :style="{ color: styles.linkText }">
+                    another link </a>.
                 </p>
               </div>
               <div
@@ -336,48 +339,53 @@ export default {
       colorList: [
         {
           id: nextColorId,
-          label: "Default",
-          hex: "#c0ffee",
+          label: "Primary",
+          hex: "#80d6ff",
         },
         {
           id: ++nextColorId,
-          label: "Grey",
-          hex: "#333333",
+          label: "Compliment",
+          hex: "#ffa980",
         },
         {
           id: ++nextColorId,
-          label: "Background",
-          hex: "#cccccc",
-        },
-        {
-          id: ++nextColorId,
-          label: "Text",
+          label: "Darkest",
           hex: "#222222",
         },
         {
           id: ++nextColorId,
-          label: "Header Text",
-          hex: "#ffaa33",
+          label: "Dark",
+          hex: "#cccccc",
+        },
+        {
+          id: ++nextColorId,
+          label: "Light",
+          hex: "#f0f0f0",
+        },
+        {
+          id: ++nextColorId,
+          label: "Lightest",
+          hex: "#ffffff",
         },
       ],
       // Styles set to default
       styles: {
         text: "#222222",
-        secondaryText: "#c0ffee",
-        linkText: "#ffaa33",
-        headerText: "#333333",
+        secondaryText: "#80d6ff",
+        linkText: "#ffa980",
+        headerText: "#ffa980",
         button: "#ffffff",
         buttonText: "#222222",
         buttonBorder: "#cccccc",
-        nav: "#c0ffee",
-        navItemText: "#333333",
+        nav: "#80d6ff",
+        navItemText: "#222222",
         pageBackground: "#cccccc",
         contentBackground: "#ffffff",
-        mainContent: "#eeeeee",
-        sidebar1: "#eeeeee",
-        sidebar2: "#eeeeee",
-        footer: "#c0ffee",
-        footerText: "#333333",
+        mainContent: "#f0f0f0",
+        sidebar1: "#222222",
+        sidebar2: "#f0f0f0",
+        footer: "#80d6ff",
+        footerText: "#222222",
       },
     };
   },
@@ -419,6 +427,16 @@ export default {
       if (selectedColor) {
         this.styles[styleName] = selectedColor.hex;
       }
+    },
+    /** Clears the color pool and visualizer and sets everything to a default scheme.
+     * Used on page load and when the user clicks the "Reset" button.
+     */
+    setDefault() {
+      // this.colorList.push({
+      //   id: ++nextColorId,
+      //   label: card.label,
+      //   hex: card.hex,
+      // });
     },
   },
 };

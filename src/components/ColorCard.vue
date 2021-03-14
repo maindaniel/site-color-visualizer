@@ -74,7 +74,7 @@ export default {
 
   .color-preview {
     grid-area: preview;
-    border-radius: 5px;
+    border: 1px solid #eeeeee;
   }
 
   .color-actions {
