@@ -32,7 +32,7 @@
 
       <hr />
 
-      <section id="color-pool">
+      <section id="color-pool" v-if="styles">
         <div class="subheader">
           <h2>Color Pool</h2>
           <button @click="addColorCard">
@@ -50,21 +50,21 @@
         </div>
       </section>
 
-      <section id="visualizer">
+      <section id="visualizer" v-if="styles">
         <h2 class="subheader">Visualize <button>Reset</button></h2>
         <div class="grid-container">
           <div class="selectors">
             <Selector
               selectName="Page Background"
               bindName="pageBackground"
-              :previewColor="styles.pageBackground"
+              :previewColor="styles.pageBackground.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Content Background"
               bindName="contentBackground"
-              :previewColor="styles.contentBackground"
+              :previewColor="styles.contentBackground.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -74,14 +74,14 @@
             <Selector
               selectName="Nav"
               bindName="nav"
-              :previewColor="styles.nav"
+              :previewColor="styles.nav.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Nav Item Text"
               bindName="navItemText"
-              :previewColor="styles.navItemText"
+              :previewColor="styles.navItemText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -91,21 +91,21 @@
             <Selector
               selectName="Main Content"
               bindName="mainContent"
-              :previewColor="styles.mainContent"
+              :previewColor="styles.mainContent.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Sidebar 1"
               bindName="sidebar1"
-              :previewColor="styles.sidebar1"
+              :previewColor="styles.sidebar1.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Sidebar 2"
               bindName="sidebar2"
-              :previewColor="styles.sidebar2"
+              :previewColor="styles.sidebar2.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -115,28 +115,28 @@
             <Selector
               selectName="Text"
               bindName="text"
-              :previewColor="styles.text"
+              :previewColor="styles.text.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Secondary Text"
               bindName="secondaryText"
-              :previewColor="styles.secondaryText"
+              :previewColor="styles.secondaryText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Link Text"
               bindName="linkText"
-              :previewColor="styles.linkText"
+              :previewColor="styles.linkText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Header Text"
               bindName="headerText"
-              :previewColor="styles.headerText"
+              :previewColor="styles.headerText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -146,21 +146,21 @@
             <Selector
               selectName="Button"
               bindName="button"
-              :previewColor="styles.button"
+              :previewColor="styles.button.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Button Text"
               bindName="buttonText"
-              :previewColor="styles.buttonText"
+              :previewColor="styles.buttonText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Button Border"
               bindName="buttonBorder"
-              :previewColor="styles.buttonBorder"
+              :previewColor="styles.buttonBorder.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -170,14 +170,14 @@
             <Selector
               selectName="Footer"
               bindName="footer"
-              :previewColor="styles.footer"
+              :previewColor="styles.footer.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
             <Selector
               selectName="Footer Text"
               bindName="footerText"
-              :previewColor="styles.footerText"
+              :previewColor="styles.footerText.hex"
               :colorList="colorList"
               @change="colorUpdated"
             />
@@ -185,76 +185,76 @@
 
           <div
             class="display"
-            :style="{ backgroundColor: styles.pageBackground }"
+            :style="{ backgroundColor: styles.pageBackground.hex }"
           >
-            <nav class="main-nav" :style="{ backgroundColor: styles.nav }">
+            <nav class="main-nav" :style="{ backgroundColor: styles.nav.hex }">
               <ul>
-                <li :style="{ color: styles.navItemText }">Home</li>
-                <li :style="{ color: styles.navItemText }">About</li>
-                <li :style="{ color: styles.navItemText }">Contact</li>
+                <li :style="{ color: styles.navItemText.hex }">Home</li>
+                <li :style="{ color: styles.navItemText.hex }">About</li>
+                <li :style="{ color: styles.navItemText.hex }">Contact</li>
               </ul>
             </nav>
             <div
               class="page-content"
-              :style="{ backgroundColor: styles.contentBackground }"
+              :style="{ backgroundColor: styles.contentBackground.hex }"
             >
               <article
                 class="main-content"
-                :style="{ backgroundColor: styles.mainContent }"
+                :style="{ backgroundColor: styles.mainContent.hex }"
               >
-                <h1 :style="{ color: styles.headerText }">Main Content</h1>
-                <p :style="{ color: styles.text }">
+                <h1 :style="{ color: styles.headerText.hex }">Main Content</h1>
+                <p :style="{ color: styles.text.hex }">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                   irure dolor in reprehenderit in voluptate velit esse cillum
                   dolore eu fugiat nulla pariatur.
-                  <span :style="{ color: styles.secondaryText }">
+                  <span :style="{ color: styles.secondaryText.hex }">
                     Excepteur sint occaecat cupidatat non proident,
                   </span>
                   sunt in culpa qui officia deserunt mollit anim id est laborum.
                   Example
-                  <a href="#" :style="{ color: styles.linkText }">link here</a>
+                  <a href="#" :style="{ color: styles.linkText.hex }">link here</a>
                 </p>
 
                 <figure>
                   <blockquote>
-                    <p :style="{ color: styles.secondaryText }">
+                    <p :style="{ color: styles.secondaryText.hex }">
                       "Sed ut perspiciatis unde omnis iste natus error sit
                       voluptatem accusantium doloremque laudantium, totam rem
                       aperiam, eaque ipsa quae ab illo inventore veritatis et
                       quasi architecto beatae vitae dicta sunt explicabo."
                     </p>
                   </blockquote>
-                  <figcaption :style="{ color: styles.text }">
+                  <figcaption :style="{ color: styles.text.hex }">
                     —Cicero, <cite>de Finibus Bonorum et Malorum</cite>
                   </figcaption>
                 </figure>
 
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 1</button
                 >&nbsp;
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 2</button
                 >&nbsp;
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 3
@@ -262,44 +262,44 @@
               </article>
               <div
                 class="sidebar1"
-                :style="{ backgroundColor: styles.sidebar1 }"
+                :style="{ backgroundColor: styles.sidebar1.hex }"
               >
-                <h4 :style="{ color: styles.headerText }">Sidebar 1</h4>
-                <p :style="{ color: styles.secondaryText }">
+                <h4 :style="{ color: styles.headerText.hex }">Sidebar 1</h4>
+                <p :style="{ color: styles.secondaryText.hex }">
                   Here is some more example text, this time entirely in the
                   secondary text color. Also, here is
-                  <a href="#" :style="{ color: styles.linkText }">
+                  <a href="#" :style="{ color: styles.linkText.hex }">
                     another link </a>.
                 </p>
               </div>
               <div
                 class="sidebar2"
-                :style="{ backgroundColor: styles.sidebar2 }"
+                :style="{ backgroundColor: styles.sidebar2.hex }"
               >
-                <h4 :style="{ color: styles.headerText }">Sidebar 2</h4>
+                <h4 :style="{ color: styles.headerText.hex }">Sidebar 2</h4>
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 1
                 </button>
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 2
                 </button>
                 <button
                   :style="{
-                    backgroundColor: styles.button,
-                    color: styles.buttonText,
-                    borderColor: styles.buttonBorder,
+                    backgroundColor: styles.button.hex,
+                    color: styles.buttonText.hex,
+                    borderColor: styles.buttonBorder.hex,
                   }"
                 >
                   Button 3
@@ -308,8 +308,8 @@
               <footer
                 class="main-footer"
                 :style="{
-                  backgroundColor: styles.footer,
-                  color: styles.footerText,
+                  backgroundColor: styles.footer.hex,
+                  color: styles.footerText.hex,
                 }"
               >
                 Footer Info Here 2021
@@ -336,57 +336,8 @@ export default {
   },
   data() {
     return {
-      colorList: [
-        {
-          id: nextColorId,
-          label: "Primary",
-          hex: "#80d6ff",
-        },
-        {
-          id: ++nextColorId,
-          label: "Compliment",
-          hex: "#ffa980",
-        },
-        {
-          id: ++nextColorId,
-          label: "Darkest",
-          hex: "#222222",
-        },
-        {
-          id: ++nextColorId,
-          label: "Dark",
-          hex: "#cccccc",
-        },
-        {
-          id: ++nextColorId,
-          label: "Light",
-          hex: "#f0f0f0",
-        },
-        {
-          id: ++nextColorId,
-          label: "Lightest",
-          hex: "#ffffff",
-        },
-      ],
-      // Styles set to default
-      styles: {
-        text: "#222222",
-        secondaryText: "#80d6ff",
-        linkText: "#ffa980",
-        headerText: "#ffa980",
-        button: "#ffffff",
-        buttonText: "#222222",
-        buttonBorder: "#cccccc",
-        nav: "#80d6ff",
-        navItemText: "#222222",
-        pageBackground: "#cccccc",
-        contentBackground: "#ffffff",
-        mainContent: "#f0f0f0",
-        sidebar1: "#222222",
-        sidebar2: "#f0f0f0",
-        footer: "#80d6ff",
-        footerText: "#222222",
-      },
+      colorList: [],
+      styles: undefined,
     };
   },
   methods: {
@@ -425,20 +376,115 @@ export default {
       });
 
       if (selectedColor) {
-        this.styles[styleName] = selectedColor.hex;
+        this.styles[styleName].hex = selectedColor.hex;
       }
     },
+
     /** Clears the color pool and visualizer and sets everything to a default scheme.
      * Used on page load and when the user clicks the "Reset" button.
      */
     setDefault() {
-      // this.colorList.push({
-      //   id: ++nextColorId,
-      //   label: card.label,
-      //   hex: card.hex,
-      // });
+      this.colorList = [
+        {
+          id: nextColorId,
+          label: "Primary",
+          hex: "#80d6ff",
+        },
+        {
+          id: ++nextColorId,
+          label: "Compliment",
+          hex: "#ffa980",
+        },
+        {
+          id: ++nextColorId,
+          label: "Darkest",
+          hex: "#222222",
+        },
+        {
+          id: ++nextColorId,
+          label: "Dark",
+          hex: "#cccccc",
+        },
+        {
+          id: ++nextColorId,
+          label: "Light",
+          hex: "#f0f0f0",
+        },
+        {
+          id: ++nextColorId,
+          label: "Lightest",
+          hex: "#ffffff",
+        },
+      ];
+
+      this.styles = {
+        text: {
+          hex: "#222222",
+          cardId: this.colorList[2].id
+        },
+        secondaryText: {
+          hex: "#80d6ff",
+          cardId: this.colorList[0].id
+        },
+        linkText: {
+          hex: "#ffa980",
+          cardId: this.colorList[1].id
+        },
+        headerText: {
+          hex: "#ffa980",
+          cardId: this.colorList[1].id
+        },
+        button: {
+          hex: "#ffffff",
+          cardId: this.colorList[5].id
+        },
+        buttonText: {
+          hex: "#222222",
+          cardId: this.colorList[2].id
+        },
+        buttonBorder: "#cccccc",
+        nav: {
+          hex: "#80d6ff",
+          cardId: this.colorList[0].id
+        },
+        navItemText: {
+          hex: "#222222",
+          cardId: this.colorList[2].id
+        },
+        pageBackground: {
+          hex: "#cccccc",
+          cardId: this.colorList[3].id
+        },
+        contentBackground: {
+          hex: "#ffffff",
+          cardId: this.colorList[5].id
+        },
+        mainContent: {
+          hex: "#f0f0f0",
+          cardId: this.colorList[4].id
+        },
+        sidebar1: {
+          hex: "#222222",
+          cardId: this.colorList[2].id
+        },
+        sidebar2: {
+          hex: "#f0f0f0",
+          cardId: this.colorList[4].id
+        },
+        footer: {
+          hex: "#80d6ff",
+          cardId: this.colorList[0].id
+        },
+        footerText: {
+          hex: "#222222",
+          cardId: this.colorList[2].id
+        },
+      }
     },
   },
+  created() {
+    this.setDefault();
+  }
 };
 </script>
 
