@@ -6,7 +6,7 @@
     </div>
     <div class="color-hex">
       <label>Hex Code</label>
-      <input type="text" v-model="card.hex" />
+      <input type="text" v-model="card.hex" @change="$emit('change', card)" />
     </div>
     <div class="color-preview" :style="{ backgroundColor: card.hex }"></div>
     <div class="color-actions">

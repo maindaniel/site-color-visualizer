@@ -1,9 +1,10 @@
 <template>
   <div class="selector">
-    <div class="previewbox" :style="{ backgroundColor: previewColor }"></div>
-    <label v-bind:for="selectName">{{ selectName }}: </label>
+    <div class="previewbox" :style="{ backgroundColor: selectedStyle.hex}"></div>
+    <label v-bind:for="bindName">{{ selectName }}: </label>
     <select
       v-bind:name="bindName"
+      v-model="selectedStyleId"
       @change="$emit('change', bindName, $event.target.value)"
     >
       <option v-for="color in colorList" :key="color.id" :value="color.id">
@@ -20,9 +21,14 @@ export default {
   props: {
     selectName: String,
     bindName: String,
-    previewColor: String,
+    selectedStyle: Object,
     colorList: Array,
   },
+  data() {
+    return {
+      selectedStyleId: this.selectedStyle.cardId
+    }
+  }
 };
 </script>
 

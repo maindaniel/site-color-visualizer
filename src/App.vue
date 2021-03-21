@@ -16,17 +16,7 @@
           </p>
         </div>
         <div class="sidenav">
-          <ul>
-            <li>
-              <button>Generate Example Layout</button>
-            </li>
-            <li>
-              <button>Export Colors</button>
-            </li>
-            <li>
-              <button>Test</button>
-            </li>
-          </ul>
+          <ul></ul>
         </div>
       </section>
 
@@ -46,27 +36,30 @@
             :initialCard="card"
             @remove="removeColorCard"
             @duplicate="duplicateColorCard"
+            @change="colorUpdated"
           />
         </div>
       </section>
 
       <section id="visualizer" v-if="styles">
-        <h2 class="subheader">Visualize <button>Reset</button></h2>
+        <h2 class="subheader">
+          Visualize <button @click="confirmReset">Reset</button>
+        </h2>
         <div class="grid-container">
           <div class="selectors">
             <Selector
               selectName="Page Background"
               bindName="pageBackground"
-              :previewColor="styles.pageBackground.hex"
+              :selectedStyle="styles.pageBackground"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Content Background"
               bindName="contentBackground"
-              :previewColor="styles.contentBackground.hex"
+              :selectedStyle="styles.contentBackground"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
 
             <hr class="select-divider" />
@@ -74,16 +67,16 @@
             <Selector
               selectName="Nav"
               bindName="nav"
-              :previewColor="styles.nav.hex"
+              :selectedStyle="styles.nav"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Nav Item Text"
               bindName="navItemText"
-              :previewColor="styles.navItemText.hex"
+              :selectedStyle="styles.navItemText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
 
             <hr class="select-divider" />
@@ -91,23 +84,23 @@
             <Selector
               selectName="Main Content"
               bindName="mainContent"
-              :previewColor="styles.mainContent.hex"
+              :selectedStyle="styles.mainContent"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Sidebar 1"
               bindName="sidebar1"
-              :previewColor="styles.sidebar1.hex"
+              :selectedStyle="styles.sidebar1"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Sidebar 2"
               bindName="sidebar2"
-              :previewColor="styles.sidebar2.hex"
+              :selectedStyle="styles.sidebar2"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
 
             <hr class="select-divider" />
@@ -115,30 +108,30 @@
             <Selector
               selectName="Text"
               bindName="text"
-              :previewColor="styles.text.hex"
+              :selectedStyle="styles.text"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Secondary Text"
               bindName="secondaryText"
-              :previewColor="styles.secondaryText.hex"
+              :selectedStyle="styles.secondaryText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Link Text"
               bindName="linkText"
-              :previewColor="styles.linkText.hex"
+              :selectedStyle="styles.linkText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Header Text"
               bindName="headerText"
-              :previewColor="styles.headerText.hex"
+              :selectedStyle="styles.headerText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
 
             <hr class="select-divider" />
@@ -146,23 +139,23 @@
             <Selector
               selectName="Button"
               bindName="button"
-              :previewColor="styles.button.hex"
+              :selectedStyle="styles.button"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Button Text"
               bindName="buttonText"
-              :previewColor="styles.buttonText.hex"
+              :selectedStyle="styles.buttonText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Button Border"
               bindName="buttonBorder"
-              :previewColor="styles.buttonBorder.hex"
+              :selectedStyle="styles.buttonBorder"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
 
             <hr class="select-divider" />
@@ -170,16 +163,16 @@
             <Selector
               selectName="Footer"
               bindName="footer"
-              :previewColor="styles.footer.hex"
+              :selectedStyle="styles.footer"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
             <Selector
               selectName="Footer Text"
               bindName="footerText"
-              :previewColor="styles.footerText.hex"
+              :selectedStyle="styles.footerText"
               :colorList="colorList"
-              @change="colorUpdated"
+              @change="selectorUpdated"
             />
           </div>
 
@@ -215,7 +208,9 @@
                   </span>
                   sunt in culpa qui officia deserunt mollit anim id est laborum.
                   Example
-                  <a href="#" :style="{ color: styles.linkText.hex }">link here</a>
+                  <a href="#" :style="{ color: styles.linkText.hex }">
+                    link here
+                  </a>
                 </p>
 
                 <figure>
@@ -269,7 +264,8 @@
                   Here is some more example text, this time entirely in the
                   secondary text color. Also, here is
                   <a href="#" :style="{ color: styles.linkText.hex }">
-                    another link </a>.
+                    another link </a
+                  >.
                 </p>
               </div>
               <div
@@ -326,7 +322,7 @@
 import ColorCard from "./components/ColorCard.vue";
 import Selector from "./components/Selector.vue";
 
-let nextColorId = 1;
+let nextColorId = 0;
 
 export default {
   name: "App",
@@ -366,11 +362,21 @@ export default {
       });
     },
 
+    /** On Change of a color card, update the visualizer.
+     * @param card: The card that was changed
+     */
+    colorUpdated(card) {
+      if (this.styles) {
+        // TODO: Update visualizer on card change
+        console.log("card :>> ", card);
+      }
+    },
+
     /** On Change of a color selector, update the inputted style by name.
      * @param styleName: Name of the object in 'styles' that represents something in the visualizer
      * @param selectedId: Color id the was selcted.
      */
-    colorUpdated(styleName, selectedId) {
+    selectorUpdated(styleName, selectedId) {
       const selectedColor = this.colorList.find((color) => {
         return color.id == selectedId;
       });
@@ -380,13 +386,31 @@ export default {
       }
     },
 
+    /**
+     * Confirmation menu pop-up to prevent user from accidentally reseting the color pool and selection.
+     */
+    confirmReset() {
+      if (
+        confirm(
+          "Are you sure? This will reset both the color pool and the selectors to the default configuration."
+        )
+      ) {
+        this.setDefault();
+      }
+    },
+
     /** Clears the color pool and visualizer and sets everything to a default scheme.
      * Used on page load and when the user clicks the "Reset" button.
      */
     setDefault() {
+      // First, reset the lists.
+      this.colorList = [];
+      this.styles = {};
+
+      // Then, set defaults.
       this.colorList = [
         {
-          id: nextColorId,
+          id: ++nextColorId,
           label: "Primary",
           hex: "#80d6ff",
         },
@@ -420,71 +444,74 @@ export default {
       this.styles = {
         text: {
           hex: "#222222",
-          cardId: this.colorList[2].id
+          cardId: this.colorList[2].id,
         },
         secondaryText: {
           hex: "#80d6ff",
-          cardId: this.colorList[0].id
+          cardId: this.colorList[0].id,
         },
         linkText: {
           hex: "#ffa980",
-          cardId: this.colorList[1].id
+          cardId: this.colorList[1].id,
         },
         headerText: {
           hex: "#ffa980",
-          cardId: this.colorList[1].id
+          cardId: this.colorList[1].id,
         },
         button: {
           hex: "#ffffff",
-          cardId: this.colorList[5].id
+          cardId: this.colorList[5].id,
         },
         buttonText: {
           hex: "#222222",
-          cardId: this.colorList[2].id
+          cardId: this.colorList[2].id,
         },
-        buttonBorder: "#cccccc",
+        buttonBorder: {
+          hex: "#cccccc",
+          cardId: this.colorList[3].id,
+        },
         nav: {
           hex: "#80d6ff",
-          cardId: this.colorList[0].id
+          cardId: this.colorList[0].id,
         },
         navItemText: {
           hex: "#222222",
-          cardId: this.colorList[2].id
+          cardId: this.colorList[2].id,
         },
         pageBackground: {
           hex: "#cccccc",
-          cardId: this.colorList[3].id
+          cardId: this.colorList[3].id,
         },
         contentBackground: {
           hex: "#ffffff",
-          cardId: this.colorList[5].id
+          cardId: this.colorList[5].id,
         },
         mainContent: {
           hex: "#f0f0f0",
-          cardId: this.colorList[4].id
+          cardId: this.colorList[4].id,
         },
         sidebar1: {
           hex: "#222222",
-          cardId: this.colorList[2].id
+          cardId: this.colorList[2].id,
         },
         sidebar2: {
           hex: "#f0f0f0",
-          cardId: this.colorList[4].id
+          cardId: this.colorList[4].id,
         },
         footer: {
           hex: "#80d6ff",
-          cardId: this.colorList[0].id
+          cardId: this.colorList[0].id,
         },
         footerText: {
           hex: "#222222",
-          cardId: this.colorList[2].id
+          cardId: this.colorList[2].id,
         },
-      }
+      };
     },
   },
   created() {
     this.setDefault();
-  }
+  },
 };
 </script>
 
