@@ -4,10 +4,10 @@
     <label v-bind:for="bindName">{{ selectName }}: </label>
     <select
       v-bind:name="bindName"
-      v-model="selectedStyleId"
+      v-model="selectedStyle.id"
       @change="$emit('change', bindName, $event.target.value)"
     >
-      <option v-for="color in colorList" :key="color.id" :value="color.id">
+      <option v-for="(color, index) in colorList" :key="bindName + index" :value="color.id">
         {{ color.label }}
       </option>
     </select>
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      selectedStyleId: this.selectedStyle.cardId
+      selectedStyleId: this.selectedStyle.id
     }
   }
 };

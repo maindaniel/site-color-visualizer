@@ -5,14 +5,18 @@
         <div class="introduction">
           <h1 class="header">Site Color Visualizer</h1>
           <p>
-            An open source tool to help create basic color themes for websites,
-            and to also visualize how they could look on a template website.
+            An open source tool to help visualize how a color palette may look
+            on a website.
           </p>
 
           <h2 class="subheader" style="margin: 2rem 0 0.3rem 0">How to Use</h2>
           <p>
             Add colors to your color pool below by clicking the + button near
-            the section header
+            the "Color Pool" section header, or by overwriting the cards in the
+            default layout. Cards in the color pool will appear in the select
+            dropdowns in the "Visualize" section. The select menus represent
+            elements in the visualizer, which change to the selected color of
+            your choice.
           </p>
         </div>
         <div class="sidenav">
@@ -367,8 +371,11 @@ export default {
      */
     colorUpdated(card) {
       if (this.styles) {
-        // TODO: Update visualizer on card change
-        console.log("card :>> ", card);
+        for (let style in this.styles) {
+          if (this.styles[style].id === card.id) {
+            this.styles[style] = Object.assign({}, card);
+          }
+        }
       }
     },
 
@@ -377,12 +384,12 @@ export default {
      * @param selectedId: Color id the was selcted.
      */
     selectorUpdated(styleName, selectedId) {
-      const selectedColor = this.colorList.find((color) => {
-        return color.id == selectedId;
+      const selectedColorCard = this.colorList.find((colorCard) => {
+        return colorCard.id == selectedId;
       });
 
-      if (selectedColor) {
-        this.styles[styleName].hex = selectedColor.hex;
+      if (selectedColorCard) {
+        this.styles[styleName] = Object.assign({}, selectedColorCard);
       }
     },
 
@@ -442,70 +449,22 @@ export default {
       ];
 
       this.styles = {
-        text: {
-          hex: "#222222",
-          cardId: this.colorList[2].id,
-        },
-        secondaryText: {
-          hex: "#80d6ff",
-          cardId: this.colorList[0].id,
-        },
-        linkText: {
-          hex: "#ffa980",
-          cardId: this.colorList[1].id,
-        },
-        headerText: {
-          hex: "#ffa980",
-          cardId: this.colorList[1].id,
-        },
-        button: {
-          hex: "#ffffff",
-          cardId: this.colorList[5].id,
-        },
-        buttonText: {
-          hex: "#222222",
-          cardId: this.colorList[2].id,
-        },
-        buttonBorder: {
-          hex: "#cccccc",
-          cardId: this.colorList[3].id,
-        },
-        nav: {
-          hex: "#80d6ff",
-          cardId: this.colorList[0].id,
-        },
-        navItemText: {
-          hex: "#222222",
-          cardId: this.colorList[2].id,
-        },
-        pageBackground: {
-          hex: "#cccccc",
-          cardId: this.colorList[3].id,
-        },
-        contentBackground: {
-          hex: "#ffffff",
-          cardId: this.colorList[5].id,
-        },
-        mainContent: {
-          hex: "#f0f0f0",
-          cardId: this.colorList[4].id,
-        },
-        sidebar1: {
-          hex: "#222222",
-          cardId: this.colorList[2].id,
-        },
-        sidebar2: {
-          hex: "#f0f0f0",
-          cardId: this.colorList[4].id,
-        },
-        footer: {
-          hex: "#80d6ff",
-          cardId: this.colorList[0].id,
-        },
-        footerText: {
-          hex: "#222222",
-          cardId: this.colorList[2].id,
-        },
+        text: Object.assign({}, this.colorList[2]),
+        secondaryText: Object.assign({}, this.colorList[0]),
+        linkText: Object.assign({}, this.colorList[1]),
+        headerText: Object.assign({}, this.colorList[1]),
+        button: Object.assign({}, this.colorList[5]),
+        buttonText: Object.assign({}, this.colorList[2]),
+        buttonBorder: Object.assign({}, this.colorList[3]),
+        nav: Object.assign({}, this.colorList[0]),
+        navItemText: Object.assign({}, this.colorList[2]),
+        pageBackground: Object.assign({}, this.colorList[3]),
+        contentBackground: Object.assign({}, this.colorList[5]),
+        mainContent: Object.assign({}, this.colorList[4]),
+        sidebar1: Object.assign({}, this.colorList[2]),
+        sidebar2: Object.assign({}, this.colorList[4]),
+        footer: Object.assign({}, this.colorList[0]),
+        footerText: Object.assign({}, this.colorList[2]),
       };
     },
   },
