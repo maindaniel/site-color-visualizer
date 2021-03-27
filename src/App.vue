@@ -52,129 +52,11 @@
         <div class="grid-container">
           <div class="selectors">
             <Selector
-              selectName="Page Background"
-              bindName="pageBackground"
-              :selectedStyle="styles.pageBackground"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Content Background"
-              bindName="contentBackground"
-              :selectedStyle="styles.contentBackground"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Nav"
-              bindName="nav"
-              :selectedStyle="styles.nav"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Nav Item Text"
-              bindName="navItemText"
-              :selectedStyle="styles.navItemText"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Main Content"
-              bindName="mainContent"
-              :selectedStyle="styles.mainContent"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Sidebar 1"
-              bindName="sidebar1"
-              :selectedStyle="styles.sidebar1"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Sidebar 2"
-              bindName="sidebar2"
-              :selectedStyle="styles.sidebar2"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Text"
-              bindName="text"
-              :selectedStyle="styles.text"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Secondary Text"
-              bindName="secondaryText"
-              :selectedStyle="styles.secondaryText"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Link Text"
-              bindName="linkText"
-              :selectedStyle="styles.linkText"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Header Text"
-              bindName="headerText"
-              :selectedStyle="styles.headerText"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Button"
-              bindName="button"
-              :selectedStyle="styles.button"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Button Text"
-              bindName="buttonText"
-              :selectedStyle="styles.buttonText"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Button Border"
-              bindName="buttonBorder"
-              :selectedStyle="styles.buttonBorder"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-
-            <hr class="select-divider" />
-
-            <Selector
-              selectName="Footer"
-              bindName="footer"
-              :selectedStyle="styles.footer"
-              :colorList="colorList"
-              @change="selectorUpdated"
-            />
-            <Selector
-              selectName="Footer Text"
-              bindName="footerText"
-              :selectedStyle="styles.footerText"
+              v-for="select in selectList"
+              :key="select"
+              :selectName="select.name"
+              :bindName="select.bindName"
+              :selectedStyle="styles[select.bindName]"
               :colorList="colorList"
               @change="selectorUpdated"
             />
@@ -466,6 +348,25 @@ export default {
         footer: Object.assign({}, this.colorList[0]),
         footerText: Object.assign({}, this.colorList[2]),
       };
+
+      this.selectList = [
+        { name: "text", bindName: "text" },
+        { name: "secondaryText", bindName: "secondaryText" },
+        { name: "linkText", bindName: "linkText" },
+        { name: "headerText", bindName: "headerText" },
+        { name: "button", bindName: "button" },
+        { name: "buttonText", bindName: "buttonText" },
+        { name: "buttonBorder", bindName: "buttonBorder" },
+        { name: "nav", bindName: "nav" },
+        { name: "navItemText", bindName: "navItemText" },
+        { name: "pageBackground", bindName: "pageBackground" },
+        { name: "contentBackground", bindName: "contentBackground" },
+        { name: "mainContent", bindName: "mainContent" },
+        { name: "sidebar1", bindName: "sidebar1" },
+        { name: "sidebar2", bindName: "sidebar2" },
+        { name: "footer", bindName: "footer" },
+        { name: "footerText", bindName: "footerText" },
+      ];
     },
   },
   created() {
