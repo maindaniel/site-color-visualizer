@@ -4,6 +4,7 @@ Open-source tool to help visualize how color themes will look on a webpage.
 ## Q&A
 
 ### How To Use
+The app is hosted at https://dylan-snyder.github.io/site-color-visualizer/
 To run locally, simply clone the repo and serve via Vue.
 
 ### Why Vue?

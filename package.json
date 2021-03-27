@@ -2,7 +2,7 @@
   "name": "site-color-visualizer",
   "version": "1.0.0",
   "private": true,
-  "description": "Open-source tool to help visualize how certain color themes will look on a webpage.",
+  "description": "Open-source tool to help visualize how color themes will look on a mock webpage.",
   "author": {
     "name": "dylan-snyder"
   },
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/dylan-snyder/site-color-visualizer/issues"
   },
-  "homepage": "https://github.com/dylan-snyder/site-color-visualizer#readme",
+  "homepage": "https://github.com/dylan-snyder/site-color-visualizer",
   "license": "MIT",
   "repository": {
     "type": "git",
