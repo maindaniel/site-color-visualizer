@@ -32,7 +32,8 @@
 					<button @click="addColorCard">
 						<img src="./assets/icons/plus.svg" alt="Add Color Card" />
 					</button>
-					<input type="file" @change="importColors" />
+					<input id="importFile" type="file" @change="importColors" hidden />
+					<button @click="clickImportInput">Import</button>
 				</div>
 				<div class="color-cards">
 					<ColorCard
@@ -208,7 +209,7 @@
 <script>
 import ColorCard from './components/ColorCard.vue';
 import Selector from './components/Selector.vue';
-import uuid from 'vue-uuid';
+import { uuid } from 'vue-uuid';
 
 export default {
 	name: 'App',
@@ -226,7 +227,7 @@ export default {
 		/** Add brand new color card set to card defaults. */
 		addColorCard() {
 			this.colorList.push({
-				id: uuid,
+				id: uuid.v1(),
 				label: '',
 				hex: '',
 			});
@@ -242,7 +243,7 @@ export default {
 		/** Duplicate a color card based on other card's id. */
 		duplicateColorCard(card) {
 			this.colorList.push({
-				id: uuid,
+				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
 			});
@@ -289,6 +290,13 @@ export default {
 		},
 
 		/**
+		 * On click event to trigger hidden file input
+		 */
+		clickImportInput() {
+			document.getElementById('importFile').click();
+		},
+
+		/**
 		 * Import colors from json file
 		 */
 		importColors(event) {
@@ -299,7 +307,8 @@ export default {
 
 				fileReader.onload = (event) => {
 					const jsonObjs = JSON.parse(event.target.result);
-					this.colorList = jsonObjs;
+					this.colorList = jsonObjs.colorList;
+					this.styles = jsonObjs.styles;
 				};
 
 				fileReader.readAsText(event.target.files[0]);
@@ -317,32 +326,32 @@ export default {
 			// Then, set defaults.
 			this.colorList = [
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Primary',
 					hex: '#80d6ff',
 				},
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Compliment',
 					hex: '#ffa980',
 				},
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Darkest',
 					hex: '#222222',
 				},
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Dark',
 					hex: '#cccccc',
 				},
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Light',
 					hex: '#f0f0f0',
 				},
 				{
-					id: uuid,
+					id: uuid.v1(),
 					label: 'Lightest',
 					hex: '#ffffff',
 				},
@@ -388,7 +397,6 @@ export default {
 		},
 	},
 	created() {
-		console.log('CREATED');
 		this.setDefault();
 	},
 };
