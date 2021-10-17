@@ -44,6 +44,7 @@
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
 						@change="colorUpdated"
+						@togglePicker="togglePicker"
 					/>
 				</div>
 			</section>
@@ -247,6 +248,7 @@ export default {
 				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
+				showPicker: card.showPicker,
 			});
 		},
 
@@ -259,6 +261,21 @@ export default {
 					if (this.styles[style].id === card.id) {
 						this.styles[style] = Object.assign({}, card);
 					}
+				}
+			}
+		},
+
+		/** Toggle the visibility of the color picker. Only one
+		 * color picker will be open at a time.
+		 * @param card: The card that was changed
+		 */
+		togglePicker(card) {
+			for (let colorCard in this.colorList) {
+				if (this.colorList[colorCard].id === card.id) {
+					this.colorList[colorCard].showPicker = !this.colorList[colorCard]
+						.showPicker;
+				} else {
+					this.colorList[colorCard].showPicker = false;
 				}
 			}
 		},
@@ -276,7 +293,7 @@ export default {
 				this.styles[styleName] = Object.assign({}, selectedColorCard);
 			}
 		},
-
+        
 		/**
 		 * Confirmation menu pop-up to prevent user from accidentally reseting the color pool and selection.
 		 */
@@ -302,13 +319,12 @@ export default {
 			const dataUri =
 				'data:application/json;charset=utf-8,' + encodeURIComponent(jsonString);
 			const fileName = 'colors.json';
-
 			let linkElement = document.createElement('a');
 			linkElement.setAttribute('href', dataUri);
 			linkElement.setAttribute('download', fileName);
 			linkElement.click();
 		},
-
+        
 		/** Clears the color pool and visualizer and sets everything to a default scheme.
 		 * Used on page load and when the user clicks the "Reset" button.
 		 */
