@@ -43,6 +43,7 @@
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
 						@change="colorUpdated"
+						@togglePicker="togglePicker"
 					/>
 				</div>
 			</section>
@@ -230,6 +231,7 @@ export default {
 				id: uuid.v1(),
 				label: '',
 				hex: '',
+				showPicker: false,
 			});
 		},
 
@@ -258,6 +260,21 @@ export default {
 					if (this.styles[style].id === card.id) {
 						this.styles[style] = Object.assign({}, card);
 					}
+				}
+			}
+		},
+
+		/** Toggle the visibility of the color picker. Only one
+		 * color picker will be open at a time.
+		 * @param card: The card that was changed
+		 */
+		togglePicker(card) {
+			for (let colorCard in this.colorList) {
+				if (this.colorList[colorCard].id === card.id) {
+					this.colorList[colorCard].showPicker = !this.colorList[colorCard]
+						.showPicker;
+				} else {
+					this.colorList[colorCard].showPicker = false;
 				}
 			}
 		},
@@ -303,8 +320,6 @@ export default {
 			if (event.target.files.length > 0) {
 				var fileReader = new FileReader();
 
-				// let self = this;
-
 				fileReader.onload = (event) => {
 					const jsonObjs = JSON.parse(event.target.result);
 					this.colorList = jsonObjs.colorList;
@@ -329,31 +344,37 @@ export default {
 					id: uuid.v1(),
 					label: 'Primary',
 					hex: '#80d6ff',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Compliment',
 					hex: '#ffa980',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Darkest',
 					hex: '#222222',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Dark',
 					hex: '#cccccc',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Light',
 					hex: '#f0f0f0',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Lightest',
 					hex: '#ffffff',
+					showPicker: false,
 				},
 			];
 
