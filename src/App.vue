@@ -42,7 +42,7 @@
 						:initialCard="card"
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
-						@change="colorUpdated"
+						@colorUpdated="colorUpdated"
 						@togglePicker="togglePicker"
 					/>
 				</div>
