@@ -33,7 +33,7 @@
 						<img src="./assets/icons/plus.svg" alt="Add Color Card" />
 					</button>
 				</div>
-				<div class="color-cards">
+				<div class="color-cards" v-dragula="colorList" bag="first-bag">
 					<ColorCard
 						v-for="card in colorList"
 						:key="card.id"

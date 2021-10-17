@@ -19,6 +19,9 @@
 			@change="$emit('colorUpdated', card)"
 		></color-panel>
 		<div class="color-actions">
+			<button class="card-action">
+				<img src="../assets/icons/move.svg" alt="Move Color Card" />
+			</button>
 			<button @click="$emit('togglePicker', card)" class="card-action">
 				<img src="../assets/icons/color-picker.svg" alt="Color Picker" />
 			</button>
@@ -67,6 +70,11 @@ export default {
 	column-gap: 0.5rem;
 	row-gap: 0.5rem;
 
+	&.gu-transit {
+		opacity: 0.5;
+		border-style: dashed;
+	}
+
 	.color-label,
 	.color-hex {
 		label,
@@ -107,6 +115,7 @@ export default {
 		display: inline;
 
 		button {
+			width: 30px;
 			margin-right: 0.5rem;
 		}
 	}
