@@ -210,8 +210,7 @@
 <script>
 import ColorCard from './components/ColorCard.vue';
 import Selector from './components/Selector.vue';
-
-let nextColorId = 0;
+import { uuid } from 'vue-uuid';
 
 export default {
 	name: 'App',
@@ -229,7 +228,7 @@ export default {
 		/** Add brand new color card set to card defaults. */
 		addColorCard() {
 			this.colorList.push({
-				id: ++nextColorId,
+				id: uuid.v1(),
 				label: '',
 				hex: '',
 			});
@@ -245,7 +244,7 @@ export default {
 		/** Duplicate a color card based on other card's id. */
 		duplicateColorCard(card) {
 			this.colorList.push({
-				id: ++nextColorId,
+				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
 			});
@@ -295,7 +294,11 @@ export default {
 		 * Exports the colors as a JSON file.
 		 */
 		exportColors() {
-			const jsonString = JSON.stringify(this.colorList);
+			const fileJSON = {
+				colorList: this.colorList,
+				styles: this.styles,
+			};
+			const jsonString = JSON.stringify(fileJSON);
 			const dataUri =
 				'data:application/json;charset=utf-8,' + encodeURIComponent(jsonString);
 			const fileName = 'colors.json';
@@ -317,32 +320,32 @@ export default {
 			// Then, set defaults.
 			this.colorList = [
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Primary',
 					hex: '#80d6ff',
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Compliment',
 					hex: '#ffa980',
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Darkest',
 					hex: '#222222',
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Dark',
 					hex: '#cccccc',
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Light',
 					hex: '#f0f0f0',
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Lightest',
 					hex: '#ffffff',
 				},
