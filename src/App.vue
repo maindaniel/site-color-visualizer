@@ -43,7 +43,7 @@
 						:initialCard="card"
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
-						@change="colorUpdated"
+						@colorUpdated="colorUpdated"
 						@togglePicker="togglePicker"
 					/>
 				</div>
@@ -232,6 +232,7 @@ export default {
 				id: uuid.v1(),
 				label: '',
 				hex: '',
+				showPicker: false,
 			});
 		},
 
@@ -293,7 +294,7 @@ export default {
 				this.styles[styleName] = Object.assign({}, selectedColorCard);
 			}
 		},
-        
+
 		/**
 		 * Confirmation menu pop-up to prevent user from accidentally reseting the color pool and selection.
 		 */
@@ -324,7 +325,7 @@ export default {
 			linkElement.setAttribute('download', fileName);
 			linkElement.click();
 		},
-        
+
 		/** Clears the color pool and visualizer and sets everything to a default scheme.
 		 * Used on page load and when the user clicks the "Reset" button.
 		 */
@@ -339,31 +340,37 @@ export default {
 					id: uuid.v1(),
 					label: 'Primary',
 					hex: '#80d6ff',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Compliment',
 					hex: '#ffa980',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Darkest',
 					hex: '#222222',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Dark',
 					hex: '#cccccc',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Light',
 					hex: '#f0f0f0',
+					showPicker: false,
 				},
 				{
 					id: uuid.v1(),
 					label: 'Lightest',
 					hex: '#ffffff',
+					showPicker: false,
 				},
 			];
 
