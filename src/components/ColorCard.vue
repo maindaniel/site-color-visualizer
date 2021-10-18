@@ -40,7 +40,7 @@ export default {
 	name: 'ColorCard',
 	props: {
 		initialCard: {
-			id: Number,
+			id: String,
 			label: String,
 			hex: String,
 			showPicker: Boolean,

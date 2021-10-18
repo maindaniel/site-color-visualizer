@@ -32,6 +32,9 @@
 					<button @click="addColorCard">
 						<img src="./assets/icons/plus.svg" alt="Add Color Card" />
 					</button>
+					<button @click="exportColors">
+						Export
+					</button>
 				</div>
 				<div class="color-cards" v-dragula="colorList" bag="first-bag">
 					<ColorCard
@@ -208,8 +211,7 @@
 <script>
 import ColorCard from './components/ColorCard.vue';
 import Selector from './components/Selector.vue';
-
-let nextColorId = 0;
+import { uuid } from 'vue-uuid';
 
 export default {
 	name: 'App',
@@ -227,9 +229,10 @@ export default {
 		/** Add brand new color card set to card defaults. */
 		addColorCard() {
 			this.colorList.push({
-				id: ++nextColorId,
+				id: uuid.v1(),
 				label: '',
 				hex: '',
+				showPicker: false,
 			});
 		},
 
@@ -243,7 +246,7 @@ export default {
 		/** Duplicate a color card based on other card's id. */
 		duplicateColorCard(card) {
 			this.colorList.push({
-				id: ++nextColorId,
+				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
 				showPicker: card.showPicker,
@@ -305,6 +308,24 @@ export default {
 			}
 		},
 
+		/**
+		 * Exports the colors as a JSON file.
+		 */
+		exportColors() {
+			const fileJSON = {
+				colorList: this.colorList,
+				styles: this.styles,
+			};
+			const jsonString = JSON.stringify(fileJSON);
+			const dataUri =
+				'data:application/json;charset=utf-8,' + encodeURIComponent(jsonString);
+			const fileName = 'colors.json';
+			let linkElement = document.createElement('a');
+			linkElement.setAttribute('href', dataUri);
+			linkElement.setAttribute('download', fileName);
+			linkElement.click();
+		},
+
 		/** Clears the color pool and visualizer and sets everything to a default scheme.
 		 * Used on page load and when the user clicks the "Reset" button.
 		 */
@@ -316,37 +337,37 @@ export default {
 			// Then, set defaults.
 			this.colorList = [
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Primary',
 					hex: '#80d6ff',
 					showPicker: false,
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Compliment',
 					hex: '#ffa980',
 					showPicker: false,
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Darkest',
 					hex: '#222222',
 					showPicker: false,
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Dark',
 					hex: '#cccccc',
 					showPicker: false,
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Light',
 					hex: '#f0f0f0',
 					showPicker: false,
 				},
 				{
-					id: ++nextColorId,
+					id: uuid.v1(),
 					label: 'Lightest',
 					hex: '#ffffff',
 					showPicker: false,
