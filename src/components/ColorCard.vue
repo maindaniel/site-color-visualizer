@@ -12,7 +12,7 @@
 					v-model="card.hex"
 					@change="$emit('colorUpdated', card)"
 				/>
-				<button @click="$emit('copyHexToClipboard', card)" class="hex-copy-action">
+				<button @click="$emit('copyHexToClipboard', card)">
 					<img src="../assets/icons/copy.svg" alt="Copy hex to clipboard" />
 				</button>
 			</div>
