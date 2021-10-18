@@ -34,6 +34,9 @@
 					</button>
 					<input id="importFile" type="file" @change="importColors" hidden />
 					<button @click="clickImportInput">Import</button>
+					<button @click="exportColors">
+						Export
+					</button>
 				</div>
 				<div class="color-cards">
 					<ColorCard
@@ -328,6 +331,24 @@ export default {
 
 				fileReader.readAsText(event.target.files[0]);
 			}
+		},
+
+		/**
+		 * Exports the colors as a JSON file.
+		 */
+		exportColors() {
+			const fileJSON = {
+				colorList: this.colorList,
+				styles: this.styles,
+			};
+			const jsonString = JSON.stringify(fileJSON);
+			const dataUri =
+				'data:application/json;charset=utf-8,' + encodeURIComponent(jsonString);
+			const fileName = 'colors.json';
+			let linkElement = document.createElement('a');
+			linkElement.setAttribute('href', dataUri);
+			linkElement.setAttribute('download', fileName);
+			linkElement.click();
 		},
 
 		/** Clears the color pool and visualizer and sets everything to a default scheme.
