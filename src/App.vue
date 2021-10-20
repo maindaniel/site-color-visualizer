@@ -32,6 +32,8 @@
 					<button @click="addColorCard">
 						<img src="./assets/icons/plus.svg" alt="Add Color Card" />
 					</button>
+					<input id="importFile" type="file" @change="importColors" hidden />
+					<button @click="clickImportInput">Import</button>
 					<button @click="exportColors">
 						Export
 					</button>
@@ -250,7 +252,6 @@ export default {
 				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
-				showPicker: card.showPicker,
 			});
 		},
 
@@ -321,6 +322,30 @@ export default {
 				)
 			) {
 				this.setDefault();
+			}
+		},
+
+		/**
+		 * On click event to trigger hidden file input
+		 */
+		clickImportInput() {
+			document.getElementById('importFile').click();
+		},
+
+		/**
+		 * Import colors from json file
+		 */
+		importColors(event) {
+			if (event.target.files.length > 0) {
+				var fileReader = new FileReader();
+
+				fileReader.onload = (event) => {
+					const jsonObjs = JSON.parse(event.target.result);
+					this.colorList = jsonObjs.colorList;
+					this.styles = jsonObjs.styles;
+				};
+
+				fileReader.readAsText(event.target.files[0]);
 			}
 		},
 
