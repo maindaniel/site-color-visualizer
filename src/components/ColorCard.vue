@@ -6,11 +6,16 @@
 		</div>
 		<div class="color-hex">
 			<label>Hex Code</label>
-			<input
-				type="text"
-				v-model="card.hex"
-				@change="$emit('colorUpdated', card)"
-			/>
+			<div class="color-hex-input">
+				<input
+					type="text"
+					v-model="card.hex"
+					@change="$emit('colorUpdated', card)"
+				/>
+				<button @click="$emit('copyHexToClipboard', card)">
+					<img src="../assets/icons/copy.svg" alt="Copy hex to clipboard" />
+				</button>
+			</div>
 		</div>
 		<div class="color-preview" :style="{ backgroundColor: card.hex }"></div>
 		<color-panel
@@ -67,14 +72,6 @@ export default {
 	column-gap: 0.5rem;
 	row-gap: 0.5rem;
 
-	.color-label,
-	.color-hex {
-		label,
-		input {
-			display: block;
-		}
-	}
-
 	.color-label {
 		grid-area: label;
 	}
@@ -108,6 +105,21 @@ export default {
 
 		button {
 			margin-right: 0.5rem;
+		}
+	}
+	
+	.color-hex-input{
+		display: inline-flex;
+
+		input{
+			width: 100%;
+			padding-right: 20px;
+		}
+		button{
+			padding: 0%;
+			margin-left: -20px;
+			width: 20px;
+			height: 20px;
 		}
 	}
 }

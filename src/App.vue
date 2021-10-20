@@ -44,6 +44,7 @@
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
 						@colorUpdated="colorUpdated"
+						@copyHexToClipboard="copyHexToClipboard"
 						@togglePicker="togglePicker"
 					/>
 				</div>
@@ -265,6 +266,21 @@ export default {
 				}
 			}
 		},
+
+
+		/** On clik to copy the selected hex color.
+		 * @param card: The card with the selected color.
+		 */
+		copyHexToClipboard(card) {
+			const el = document.createElement('textarea');  
+			el.value = card.hex;                                 
+			el.setAttribute('readonly', '');                
+			document.body.appendChild(el);                  
+			el.select();                                    
+			document.execCommand('copy');                   
+			document.body.removeChild(el);
+		},
+
 
 		/** Toggle the visibility of the color picker. Only one
 		 * color picker will be open at a time.
