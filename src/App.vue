@@ -32,11 +32,19 @@
 					<button @click="addColorCard">
 						<img src="./assets/icons/plus.svg" alt="Add Color Card" />
 					</button>
+					<input id="importFile" type="file" @change="importColors" hidden />
+					<button @click="clickImportInput">Import</button>
 					<button @click="exportColors">
 						Export
 					</button>
 				</div>
-				<div class="color-cards" v-dragula="colorList" bag="first-bag">
+				<draggable
+					class="color-cards"
+					v-model="colorList"
+					group="colorCards"
+					@start="drag = true"
+					@end="drag = false"
+				>
 					<ColorCard
 						v-for="card in colorList"
 						:key="card.id"
@@ -44,9 +52,10 @@
 						@remove="removeColorCard"
 						@duplicate="duplicateColorCard"
 						@colorUpdated="colorUpdated"
+						@copyHexToClipboard="copyHexToClipboard"
 						@togglePicker="togglePicker"
 					/>
-				</div>
+				</draggable>
 			</section>
 
 			<section id="visualizer" v-if="styles">
@@ -212,12 +221,14 @@
 import ColorCard from './components/ColorCard.vue';
 import Selector from './components/Selector.vue';
 import { uuid } from 'vue-uuid';
+import draggable from 'vuedraggable';
 
 export default {
 	name: 'App',
 	components: {
 		ColorCard,
 		Selector,
+		draggable,
 	},
 	data() {
 		return {
@@ -249,7 +260,7 @@ export default {
 				id: uuid.v1(),
 				label: card.label,
 				hex: card.hex,
-				showPicker: card.showPicker,
+				showPicker: false,
 			});
 		},
 
@@ -264,6 +275,19 @@ export default {
 					}
 				}
 			}
+		},
+
+		/** On clik to copy the selected hex color.
+		 * @param card: The card with the selected color.
+		 */
+		copyHexToClipboard(card) {
+			const el = document.createElement('textarea');
+			el.value = card.hex;
+			el.setAttribute('readonly', '');
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
 		},
 
 		/** Toggle the visibility of the color picker. Only one
@@ -305,6 +329,30 @@ export default {
 				)
 			) {
 				this.setDefault();
+			}
+		},
+
+		/**
+		 * On click event to trigger hidden file input
+		 */
+		clickImportInput() {
+			document.getElementById('importFile').click();
+		},
+
+		/**
+		 * Import colors from json file
+		 */
+		importColors(event) {
+			if (event.target.files.length > 0) {
+				var fileReader = new FileReader();
+
+				fileReader.onload = (event) => {
+					const jsonObjs = JSON.parse(event.target.result);
+					this.colorList = jsonObjs.colorList;
+					this.styles = jsonObjs.styles;
+				};
+
+				fileReader.readAsText(event.target.files[0]);
 			}
 		},
 
